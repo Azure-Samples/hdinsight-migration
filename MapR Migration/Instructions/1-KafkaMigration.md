@@ -25,10 +25,10 @@ In the *live* MapR system the consumer is a Spark application, but for the purpo
 
 ![The structure of the existing Kafka system running on MapR](../Images/1-KafkaSystem.png)
 
-1. On your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. Sign in as **azureuser** with the password you specified when you set up the MapR virtual machine. Replace *\<ip_address\>* with the IP address of the virtual machine.
+1. On your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. Sign in as **azureuser** with the password you specified when you set up the MapR virtual machine. Replace *\<ip address\>* with the IP address of the virtual machine.
 
     ```PowerShell
-    ssh azureuser@<ip_address>
+    ssh azureuser@<ip address>
     ```
 
 1. Create a new Kafka topic named **flights**. The producer capturing the flight data will post messages to this topic. This is only a single node cluster, so set the **replication-factor** to 1. Also, set the number of partitions to 1, to minimize resource utilization for this constrained environment:
