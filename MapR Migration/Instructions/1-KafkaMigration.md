@@ -300,7 +300,7 @@ In this task, you'll configure peering between the virtual network containing th
 
     | Field | Value|
     |-|-|
-    | This virtual network: Peering link name | clustervnet-to-MapRvnet |
+    | This virtual network: Peering link name | clustervnet-to-maprvnet |
     | Traffic to remote virtual network | Allow (default) |
     | Traffic forwarded from remote virtual network | Allow (default) |
     | Virtual network gateway | None (default) |
@@ -328,7 +328,7 @@ In this task, you'll configure peering between the virtual network containing th
     ![The Ambari home page, showing the running services.](../Images/1-Ambari-Home.png)
 
 
-1. In the left-hand pane, select the **Kafka** service. In the main pane, select **Configs**. In the **Filter** box, type **min.insync.replicas**. Change the value of **min.insync.replicas** to 1, and then select **Save**.
+1. In the left-hand pane, select the **Kafka** service. In the main pane, select **CONFIGS**. In the **Filter** box, type **min.insync.replicas**. Change the value of **min.insync.replicas** to 1, and then select **Save**.
 
     ![The Kafa configuration page in Ambari. The user has changed the **min.insync.replicas** setting to 1.](../Images/1-Configure-Kafka.png)
 
@@ -340,9 +340,9 @@ In this task, you'll configure peering between the virtual network containing th
 
     ---
 
-1. In the **Save Configuration** dialog box, select **Save** to confirm the change. Select **OK** when the updated has been made.
+1. In the **Save Configuration** dialog box, select **SAVE** to confirm the change. Select **OK** when the updated has been made.
 
-1. On the configuration page, select **Restart**, and then select **Restart All Affected** to restart the Kafka service with the new configuration. In the **Confirmation** dialog box, select **Confirm Restart All**.
+1. On the configuration page, select **RESTART**, and then select **Restart All Affected** to restart the Kafka service with the new configuration. In the **Confirmation** dialog box, select **CONFIRM RESTART ALL**.
 
 1. In the **Background Operations** dialog box, wait while the service restarts, and then select **OK**.
 
