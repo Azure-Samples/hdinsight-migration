@@ -34,7 +34,7 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
 
 ---
 
-1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser**. Replace *\<ip _address\>* with the IP address of the virtual machine.
+1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser**. Replace *\<ip  address\>* with the IP address of the virtual machine.
 
     ```PowerShell
     ssh azureuser@<ip address>
