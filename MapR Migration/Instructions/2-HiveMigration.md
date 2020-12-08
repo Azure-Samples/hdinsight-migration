@@ -34,7 +34,7 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
 
 ---
 
-1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser***. Replace *\<ip_address\>* with the IP address of the virtual machine.
+1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser**. Replace *\<ip  address\>* with the IP address of the virtual machine.
 
     ```PowerShell
     ssh azureuser@<ip address>
@@ -473,17 +473,15 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 
     ![The **CONFIGS** page for Hive in Ambari. The user has disabled strict mode for managed tables.](../Images/2-Ambari-Hive-Config.png)
 
-1. In the **Confirmation** dialog box, select **SAVE**. 
+1. In the **Save Configuration** dialog box, select **SAVE**. 
 
 1. In the **Configurations** dialog box, select **PROCEED ANYWAY**.
-
-1. In the **Save Confirmation** dialog box, select **OK**.
 
 1. In the **Save Configuration Changes** dialog box, select **OK**.
 
 1. Select **RESTART**, and then select **Restart All Affected**.
 
-1. In the **Confirmation** dialog box, select **CONFIRM RESTART ALL**, and wait for the services to restart before continuing.
+1. In the **Confirmation** dialog box, select **CONFIRM RESTART ALL**, and wait for the services to restart before continuing, and then select **OK**.
 
 ## Task 3: Copy data from the MapR cluster to the HDInsight LLAP cluster
 
