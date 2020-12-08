@@ -26,7 +26,7 @@ The data in the Hive database comprises selected fields from the data received f
  
 ### Create the airportdata external table in Hive
 
-1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser**. Replace *\<ip address\>* with the IP address of the virtual machine.
+1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser**. Replace *\<ip address\>* with the IP address of the virtual machine:
 
     ```PowerShell
     ssh azureuser@<ip address>
