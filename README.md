@@ -2,9 +2,9 @@
 
 This workshop contains two sets of lab exercises:
 
-1. [Migrate a Cloudera cluster to HDInsight](Cloudera%20Migration/README.md)
+1. [Migrate a Cloudera cluster to HDInsight](ClouderaMigration/README.md)
 
-1. [Migrate a MapR cluster to HDInsight](MapR%20Migration/README.md)
+1. [Migrate a MapR cluster to HDInsight](MapRMigration/README.md)
 
 
 Both labs are very similar; they only vary in the technology used as the starting point for the migration. Select the lab most appropriate to your requirements.

@@ -30,7 +30,7 @@ The first task is to examine the existing system.
 ---
 
 **NOTE:**
-In a *fully migrated* system, the Spark application would run on an HDInsight Spark  cluster, and connect to Kafka running on an HDInsight Kafka cluster, as configured by the previous exercise. To save the costs associated with running multiple HDInsight clusters, in this exercise you'll revert to running Kafka and Spark on the original Cloudera cluster.
+In a *fully migrated* system, the Spark application would run on an HDInsight Spark  cluster, and connect to Kafka running on an HDInsight Kafka cluster. The Kakfa Migration exercise shows an example of this approach. To save the costs associated with running multiple HDInsight clusters, in this exercise you'll revert to running Kafka and Spark on the original Cloudera cluster.
 
 ---
 
@@ -56,7 +56,7 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
       --partitions 1 > /dev/null &
     ```
 
-    Remember from the previous exercise that this app simulates incoming data from flights and airports (this application reads data from a CSV file rather than receiving events). This app writes messages to the **flights** topic.
+    This app simulates incoming data from flights and airports; it reads data from a CSV file rather than receiving events. The app writes messages to the **flights** topic.
 
 1. Move to the **apps/spark** folder:
 
@@ -240,9 +240,26 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
 
 ## Task 2: Create the HDInsight LLAP cluster
 
-In this task, you'll create an HDInsight LLAP cluster for running Hive. You'll reuse the existing virtual infrastructure (storage account and network) from the Kafka cluster you created in the previous exercise. You'll create a custom Hive metadata database using Azure SQL Database. This will enable you to share the Hive metadata with other other HDInsight clusters that need to access the Hive database.
+In this task, you'll create an HDInsight LLAP cluster for running Hive. If you have performed the Kafka Migration exercise, you'll reuse the existing virtual infrastructure (storage account and network) from the Kafka cluster you created for that exercise, otherwise you'll create a new storage account and network. You'll create a custom Hive metadata database using Azure SQL Database. This will enable you to share the Hive metadata with other other HDInsight clusters that need to access the Hive database.
 
 <img alt="The structure of the HDInsight LLAP cluster" src="../Images/2-HDInsightHive.png" width=60%>
+
+### Create the virtual infrastructure
+
+---
+
+**NOTE:**
+
+Only perform the tasks in this section if you haven't performed the Kakfa Migration exercise, otherwise skip to the task [Create the SQL database](#Create-the-SQL-database).
+
+---
+1. Perform the steps in the document [Create the virtual network](../../CommonTasks/CreateVirtualNetwork.md)
+
+1. Perform the steps in the document [Create the storage account](../../CommonTasks/CreateStorageAccount.md)
+
+
+1. Perform the steps in the document [Create the user assigned managed identity](../../CommonTasks/CreateUserManagedIdentity.md)
+
 
 ### Create the SQL database
 
@@ -304,8 +321,8 @@ In this task, you'll create an HDInsight LLAP cluster for running Hive. You'll r
     | Field | Value|
     |-|-|
     | Primary storage type | Azure Data Lake Storage Gen2 |
-    | Primary storage account | Select the storage account you previously created for the Kafka cluster (**clusterstorage*9999***)|
-    | Filesystem | Reuse the same container that you created for the Kafka cluster (**cluster*9999***) |
+    | Primary storage account | Select the storage account you created earlier. (**clusterstorage*9999***)|
+    | Filesystem | If you have performed the Kafka Migration exercise, reuse the same container that you created for the Kafka cluster, otherwise specify **cluster*9999*** |
     | Identity | clustermanagedid |
     | SQL database for Ambari | leave blank |
     | SQL database for Hive | hiveserver*9999*/hivedb*9999* |

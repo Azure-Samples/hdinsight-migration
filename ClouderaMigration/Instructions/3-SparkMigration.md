@@ -9,7 +9,7 @@ In this exercise, you'll migrate a Spark workload from Cloudera to HDInsight. Yo
 - Migrate the notebook and data for the Spark workload to the HDInsight cluster.
 - Test the Spark workload on the HDInsight cluster.
 
-At the end of this process, the Spark applications will run on the HDInsight cluster, and retrieve data from the HDInsight cluster you created in the previous exercise.
+At the end of this process, the Spark applications will run on the HDInsight cluster.
 
 ## Task 1: Run the existing Spark workload
 
@@ -161,7 +161,9 @@ The data in the Hive database comprises selected fields from the data received f
 
 ## Task 2: Create the HDInsight Spark cluster
 
-In this task, you'll create an HDInsight Spark2 cluster. You'll reuse the the storage, network, and custom Hive metadata database you created in the previous lab.
+In this task, you'll create an HDInsight Spark2 cluster. If you have completed the Kafka Migration or Hive Migration exercises, you'll reuse the the storage, and network resources you created as part of those exercises, otherwise you'll need to build these items from scratch as described later.
+
+Additionally, if you have completed the Hive Migration exercise you'll reuse the database created by that exercise, otherwise you must build and populate this database as part of this exercise.
 
 <img alt="The structure of the HDInsight Spark cluster" src="../Images/3-HDInsightSpark.png" width=75%>
 
@@ -169,9 +171,42 @@ In this task, you'll create an HDInsight Spark2 cluster. You'll reuse the the st
 
 **NOTE:**
 
-In the live system, the HDInsight Spark cluster will retrieve the data from the Hive database using the resources of the HDInsight LLAP cluster. To conserve resources and reduce costs, you'll use the Hive engine provided with the Spark cluster. However, you'll reuse the storage and metadata database previously created for the LLAP cluster in the previous exercise, so the **flightinfo** table should still be available.
+In the live system, the HDInsight Spark cluster will retrieve the data from the Hive database using the resources of the HDInsight LLAP cluster. To conserve resources and reduce costs, you'll use the Hive engine provided with the Spark cluster. 
 
 ---
+
+### Create the virtual infrastructure
+
+---
+
+**NOTE:**
+
+Only perform the tasks in this section if you haven't performed the Kakfa Migration or Hive Migration exercises, otherwise skip to the task [Create the SQL database](#Create-the-SQL-database).
+
+---
+
+1. Perform the steps in the document [Create the virtual network](../../CommonTasks/CreateVirtualNetwork.md)
+
+1. Perform the steps in the document [Create the storage account](../../CommonTasks/CreateStorageAccount.md)
+
+
+1. Perform the steps in the document [Create the user assigned managed identity](../../CommonTasks/CreateUserManagedIdentity.md)
+
+
+### Create and populate the SQL database for Hive
+
+---
+
+**NOTE:**
+
+Only perform the tasks in this section if you haven't performed Hive Migration exercise, otherwise skip to the task [Create the Spark cluster](#Create-the-Spark-cluster).
+
+---
+
+1. Perform the steps in the document [Create the SQL database](../../CommonTasks/CreateSQLDatabase.md)
+
+1. Perform the steps in the document [Populate the SQL database](../../CommonTasks/PopulateSQLDatabase.md)
+
 
 ### Create the Spark cluster
 
@@ -204,7 +239,7 @@ In the live system, the HDInsight Spark cluster will retrieve the data from the 
     | Field | Value|
     |-|-|
     | Primary storage type | Azure Data Lake Storage Gen2 |
-    | Primary storage account | Select the storage account you previously created for the Kafka and Hive clusters (**clusterstorage*9999***)|
+    | Primary storage account | Select the storage account you created earlier (**clusterstorage*9999***)|
     | Filesystem | Reuse the same container that you created for the Kafka and Hive clusters (**cluster*9999***) |
     | Identity | clustermanagedid |
     | SQL database for Ambari | leave blank |
@@ -357,9 +392,29 @@ In this task, you'll transfer the data and recreate the **airportdata** external
 
 ### Migrate the data for the **airportdata** external table
 
+1. In the Azure portal, open a Cloud Shell prompt running PowerShell.
+
+1. Run the following command to create a directory named **staging** in the filesystem for the HDInsight cluster. Replace **\<9999\>** with the numeric suffix you used for the cluster storage account:
+
+    ```PowerShell
+    az storage fs directory create `
+        --name staging `
+        --file-system cluster<9999> `
+        --account-name clusterstorage<9999>
+    ```
+
+1. Retrieve the storage account keys for the storage account:
+
+    ```PowerShell
+    Get-AzStorageAccountKey -ResourceGroupName 'clusterrg' `
+        -AccountName 'clusterstorage<9999>'
+    ```
+    
+    Make a note of the value of the **key1** key.
+
 1. Return to the SSH session on the Cloudera virtual machine.
 
-1. Execute the command shown below. This command creates a new directory called **airportdata** in cluster storage for the HDInsight cluster. Replace **\<key\>** with the key for the storage account used by the HDInsight cluster (you recorded this information in the previous exercise), and replace **\<9999\>** with the numeric suffix for your storage account:
+1. Execute the command shown below. This command creates a new directory called **airportdata** in cluster storage for the HDInsight cluster. Replace **\<key\>** with the key for the storage account used by the HDInsight cluster, and replace **\<9999\>** with the numeric suffix for your storage account:
 
     ```bash
     hdfs dfs \
