@@ -58,7 +58,7 @@ $targetOSDiskSas = Grant-AzDiskAccess -ResourceGroupName $resourceGroupName `
     -DurationInSecond 864000 -Access 'Write'
 
 # Copy the contents of the pre-created OS disk to the managed OS disk
-.\azcopy copy $sourceOSDiskSAS $targetOSDiskSas.AccessSAS `
+azcopy copy $sourceOSDiskSAS $targetOSDiskSas.AccessSAS `
     --blob-type PageBlob
 
 Revoke-AzDiskAccess -ResourceGroupName $resourceGroupName `
@@ -80,7 +80,7 @@ $targetDataDiskSas = Grant-AzDiskAccess -ResourceGroupName $resourceGroupName `
     -DiskName $dataDiskName `
     -DurationInSecond 864000 -Access 'Write'
 
-.\azcopy copy $sourceDataDiskSAS $targetDataDiskSas.AccessSAS `
+azcopy copy $sourceDataDiskSAS $targetDataDiskSas.AccessSAS `
     --blob-type PageBlob
 
 Revoke-AzDiskAccess -ResourceGroupName $resourceGroupName `
