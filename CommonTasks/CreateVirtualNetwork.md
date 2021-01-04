@@ -10,7 +10,7 @@
 
     ![The Resource Groups icon on the Home page in the Azure portal](../ClouderaMigration/Images/1-Home-Page.png)
 
-1. On the **Create a resource group** page,  select the same subscription and region that you used to create the Cloudera virtual machine. Name the resource group **clusterrg**, and then select **Review + create**.
+1. On the **Create a resource group** page,  select the same subscription and region that you used to create the Cloudera or MapR virtual machine. Name the resource group **clusterrg**, and then select **Review + create**.
 
 #### Create the virtual network
 
@@ -31,7 +31,7 @@
     | Subscription | Select your subscription |
     | Resource group | clusterrg |
     | Name | clustervnet |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Region | Select the same region used by the Cloudera or MapR virtual machine and the **clusterrg** resource group |
 
 
 1. On the **IP Addresses** tab, enter the following settings, and then select **Review + create**:

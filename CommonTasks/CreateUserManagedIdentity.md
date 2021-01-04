@@ -12,7 +12,7 @@
     |-|-|
     | Subscription | Select your subscription |
     | Resource group | clusterrg |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Region | Select the same region used by the Cloudera or MapR virtual machine and the **clusterrg** resource group |
     | Name | clustermanagedid |
 
 1. On the validation page, select **Create**, and wait while the user assigned managed identity is created.

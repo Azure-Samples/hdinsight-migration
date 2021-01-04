@@ -13,7 +13,7 @@
     | Subscription | Select your subscription |
     | Resource group | clusterrg |
     | Storage account name | clusterstorage*nnnn*, where *nnnn* is a random four digit number you select to avoid clashing with other storage accounts |
-    | Location | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Location | Select the same region used by the Cloudera or MapR virtual machine and the **clusterrg** resource group |
     | Performance | Standard |
     | Account Kind | StorageV2 (general purpose v2) |
     | Replication | Zone-redundant storage (ZRS) |
