@@ -136,7 +136,7 @@ The data in the Hive database comprises selected fields from the data received f
 
 1. Enter the password **Pa55w.rdDemo**, and then select **Log in**. 
 
-    The **Files** page will appear, listing the **FlightStats** notebook and the **airports.csv** file:
+    The **Files** page will appear, listing the **FlightStats** notebook, and the **airports.csv** and **flightinfo.tsv** files:
 
     ![The **Files** page in Jupyter Notebooks.](../Images/3-Jupyter-Notebooks-Files.png)
 
