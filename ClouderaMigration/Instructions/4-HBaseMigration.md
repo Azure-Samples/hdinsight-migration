@@ -222,6 +222,8 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. On the validation page, select **Create**, and wait while the storage account is created.
 
+1. If you haven't previously completed any of the earlier exercises, perform the steps in the document [Create the user assigned managed identity](../../CommonTasks/CreateUserManagedIdentity.md)
+
 1. On the Home page in the Azure portal, under **Recent resources**, select **hbasestorage*9999***.
 
 1. On the **hbasestorage*9999*** page select **Access Control (IAM)**.
@@ -299,6 +301,8 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     ---
 
 ### Configure the cluster network connectivity
+
+1. If you haven't completed any of the previous exercises, perform the steps in the document [Peer the virtual networks](../../CommonTasks/PeerVirtualNetworks.md)
 
 1. On the Home page in the Azure portal, under **Recent resources**, select **hbasecluster*9999***.
 

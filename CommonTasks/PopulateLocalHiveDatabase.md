@@ -1,15 +1,23 @@
-## Populate the SQL Database
+## Create and populate the local Hive database
 
-1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the Cloudera virtual machine. The username is **azureuser***. Replace *\<ip_address\>* with the IP address of the virtual machine.
+1. Return to the SSH session on the Cloudera of MapR virtual machine.
 
-    ```PowerShell
-    ssh azureuser@<ip address>
+1. Move to the apps/reports folder:
+
+    ```bash
+    cd ~/apps/reports
     ```
-
-1. Start the **hive** utility:
+    
+1. if you are connected to the Cloudera virtual machine, start the **hive** utility:
 
     ```bash
     hive
+    ```
+
+    If you are connected to the MapR virtual machine, start the **beeline** utility:
+
+    ```bash
+    beeline -n azureuser -u jdbc:hive2://localhost:10000/default
     ```
 
 1. Run the following command to create the **flightinfo** table:
@@ -35,7 +43,7 @@
     FIELDS TERMINATED BY '\t'
     ```
    
-1. Run the command below to populate the **flighhtinfo** table with sample data:
+1. Run the command below to populate the **flightinfo** table with sample data:
 
     ```sql
     SET hive.strict.checks.bucketing=false;
@@ -44,8 +52,12 @@
     INTO TABLE flightinfo;
     ```
 
-1. Run the following command to quit the **hive** utility and return to the shell prompt:
+1. Run the following command to quit the **hive** or **beeline** utility and return to the shell prompt:
 
     ```sql
+    # hive
     exit;
+
+    # beeline
+    !quit
     ```

@@ -12,9 +12,9 @@
 
 1. On the **Create a resource group** page,  select the same subscription and region that you used to create the Cloudera or MapR virtual machine. Name the resource group **clusterrg**, and then select **Review + create**.
 
-#### Create the virtual network
-
 1. On the validation page, select **Create**, and wait while the resource group is created.
+
+#### Create the virtual network
 
 1. On the Azure Home page, select **Create a resource**.
 

@@ -17,7 +17,7 @@
 
 1. On the validation page, select **Create**, and wait while the user assigned managed identity is created.
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **clusterstorage*9999***.
+1. On the Home page in the Azure portal, under **Recent resources**, select **clusterstorage*9999***, where **9999** is the id you specified when you created the storage account earlier.
 
 1. On the **clusterstorage*9999*** page, select **Access Control (IAM)**:
 

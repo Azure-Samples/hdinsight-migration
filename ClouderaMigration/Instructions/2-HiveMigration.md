@@ -353,6 +353,8 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 ### Configure the cluster network connectivity
 
+1. If you haven't performed the Kakfa Migration exercise, perform the steps in the document [Peer the virtual networks](../../CommonTasks/PeerVirtualNetworks.md)
+
 1. On the Home page in the Azure portal, under **Recent resources**, select **llapcluster*9999***.
 
 1. On the **Overview** page for the cluster, under **Dashboards**, select **Ambari home**.

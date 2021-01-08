@@ -1,4 +1,4 @@
-# Exercise 3: Migrate a Spark workload to HDInisght
+# Exercise 3: Migrate a Spark workload to HDInsight
 
 ## Introduction
 
@@ -10,6 +10,81 @@ In this exercise, you'll migrate a Spark workload from MapR to HDInsight. You'll
 - Test the Spark workload on the HDInsight cluster.
 
 At the end of this process, the Spark applications will run on the HDInsight cluster.
+
+## Setup
+
+---
+
+**NOTE:**
+
+Only perform the tasks in this Setup section if you haven't performed Hive Migration exercise, otherwise skip to the task [Run the existing Spark workload](#Task-1:-Run-the-existing-Spark-workload).
+
+---
+
+1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser***. Replace *\<ip_address\>* with the IP address of the virtual machine.
+
+    ```PowerShell
+    ssh azureuser@<ip address>
+    ```
+
+1. Move to the apps/reports folder:
+
+    ```bash
+    cd ~/apps/reports
+    ```
+    
+1. Start the **beeline** utility:
+
+    ```bash
+    beeline -n azureuser -u jdbc:hive2://localhost:10000/default
+    ```
+
+1. Run the following command to create the **flightinfo** table:
+
+    ```sql
+    CREATE TABLE IF NOT EXISTS flightinfo ( 
+        `timestamp` string,
+        year string,
+        month string,
+        dayofmonth string,
+        deptime string,
+        depdelay int,
+        arrtime string,
+        arrdelay int,
+        carrier string,
+        flightnum string,
+        elapsedtime int,
+        origin string,
+        dest string,
+        distance int)
+    COMMENT 'Flight information'
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ',';
+    ```
+   
+1. Run the command below to populate the **flightinfo** table with sample data:
+
+    ```sql
+    SET hive.strict.checks.bucketing=false;
+    LOAD DATA LOCAL INPATH '/home/azureuser/apps/reports/flightinfo.csv' 
+    OVERWRITE 
+    INTO TABLE flightinfo;
+    ```
+
+1. Run the following query to verify that the **flightinfo** table has been created and populated:
+
+    ```sql
+    SELECT COUNT(*)
+    FROM flightinfo;
+    ```
+
+    The table should contain 1603 rows.
+
+1. Run the following command to quit the **beeline** utility and return to the shell prompt:
+
+    ```sql
+    !quit
+    ```
 
 ## Task 1: Run the existing Spark workload
 
@@ -136,7 +211,7 @@ The data in the Hive database comprises selected fields from the data received f
 
 1. Enter the password **Pa55w.rdDemo**, and then select **Log in**. 
 
-    The **Files** page will appear, listing the **FlightStats** notebook, and the **airports.csv** and **flightinfo.tsv** files:
+    The **Files** page will appear, listing the **FlightStats** notebook, and the **airports.csv** and **flightinfo.csv** files:
 
     ![The **Files** page in Jupyter Notebooks.](../Images/3-Jupyter-Notebooks-Files.png)
 
@@ -193,23 +268,19 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. Perform the steps in the document [Create the storage account](../../CommonTasks/CreateStorageAccount.md)
 
-
 1. Perform the steps in the document [Create the user assigned managed identity](../../CommonTasks/CreateUserManagedIdentity.md)
 
-
-### Create and populate the SQL database for Hive
+### Create the SQL database for Hive
 
 ---
 
 **NOTE:**
 
-Only perform the tasks in this section if you haven't performed Hive Migration exercise, otherwise skip to the task [Create the Spark cluster](#Create-the-Spark-cluster).
+Only perform the task in this section if you haven't performed Hive Migration exercise, otherwise skip to the task [Create the Spark cluster](#Create-the-Spark-cluster).
 
 ---
 
 1. Perform the steps in the document [Create the SQL database](../../CommonTasks/CreateSQLDatabase.md)
-
-1. Perform the steps in the document [Populate the SQL database](../../CommonTasks/PopulateSQLDatabase.md)
 
 ### Create the Spark cluster
 
@@ -227,7 +298,7 @@ Only perform the tasks in this section if you haven't performed Hive Migration e
     |-|-|
     | Subscription | Select your subscription |
     | Resource group | clusterrg |
-    | Cluster name | sparkcluster*nnnn*, where *nnnn* is the same random four digit number you used for the SQL Database (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
+    | Cluster name | sparkcluster*9999*, where *9999* is the same random four digit number you used for the SQL Database (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
     | Region | Select the same region used by the MapR virtual machine and the **clusterrg** resource group |
     | Cluster type | Spark |
     | Version | Spark 2.4 (HDI 4.0) |
@@ -243,7 +314,7 @@ Only perform the tasks in this section if you haven't performed Hive Migration e
     |-|-|
     | Primary storage type | Azure Data Lake Storage Gen2 |
     | Primary storage account | Select the storage account you created earlier (**clusterstorage*9999***)|
-    | Filesystem | Reuse the same container that you created for the Kafka and Hive clusters (**cluster*9999***) |
+    | Filesystem | **cluster*9999***. Note that if you have performed the previous exercises, you should reuse the same container that you created in those exercises. |
     | Identity | clustermanagedid |
     | SQL database for Ambari | leave blank |
     | SQL database for Hive | hiveserver*9999*/hivedb*9999* |
@@ -273,6 +344,8 @@ Only perform the tasks in this section if you haven't performed Hive Migration e
     ---
 
 ### Configure the cluster network connectivity
+
+1. If you haven't performed the Kakfa or Hive Migration exercises, perform the steps in the document [Peer the virtual networks](../../CommonTasks/PeerVirtualNetworks.md)
 
 1. On the Home page in the Azure portal, under **Recent resources**, select **sparkcluster*9999***.
 
@@ -389,11 +462,13 @@ Only perform the tasks in this section if you haven't performed Hive Migration e
 
 ## Task 3: Migrate the data and Jupyter notebook for the Spark workload
 
-In this task, you'll transfer the data and recreate the **airportdata** external table on the HDInsight Spark cluster. Then you'll migrate the Jupyter workbook that generates the reports. The **flightinfo** table should already be available in cluster storage. 
+In this task, you'll transfer the data and recreate the **airportdata** external table on the HDInsight Spark cluster. Then you'll migrate the Jupyter workbook that generates the reports. 
+
+If you have completed the Hive Migration exercise, the **flightinfo** table should already be available in cluster storage. If you haven't performed the Hive Migration exercise, use the steps in the document [Populate the flightinfo table](../../CommonTasks/PopulateFlightinfoTable.md), and then continue with this exercise.
 
 ### Migrate the data for the **airportdata** external table
 
-1. In the Azure portal, open a Cloud Shell prompt running PowerShell.
+1. In the Azure portal, if you haven't already done so, open a Cloud Shell prompt running PowerShell.
 
 1. Run the following command to create a directory named **staging** in the filesystem for the HDInsight cluster. Replace **\<9999\>** with the numeric suffix you used for the cluster storage account:
 
@@ -448,7 +523,7 @@ In this task, you'll transfer the data and recreate the **airportdata** external
     -rw-r--r--   1 azureuser supergroup     247809 2020-11-17 16:44 wasbs://cluster9999@clusterstorage9999.blob.core.windows.net/airportdata/airports.csv
     ```
 
-1. Switch to the SSH session running on the head node of the HDInsight Spark cluster.
+1. Return to the SSH session running on the head node of the HDInsight Spark cluster.
 
 1. Start the **beeline** utility:
 
