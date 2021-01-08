@@ -79,15 +79,6 @@ Only perform the tasks in this Setup section if you haven't performed Hive Migra
     ```
 
     The table should contain 1603 rows.
-       
-1. Run the command below to populate the **flightinfo** table with sample data:
-
-    ```sql
-    SET hive.strict.checks.bucketing=false;
-    LOAD DATA LOCAL INPATH '/home/azureuser/apps/reports/flightinfo.tsv' 
-    OVERWRITE 
-    INTO TABLE flightinfo;
-    ```
 
 1. Run the following command to quit the **hive** utility and return to the shell prompt:
 
