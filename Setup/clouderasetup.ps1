@@ -9,8 +9,12 @@ $sourceDiskSAS = '<SAS>'
 # Specify the location for creating resources
 $location = "East US"
 
+# Generate a unique suffix for resources, 
+# to allow multiple copies to be created using the same subscription
+$uniqueSuffix = Get-Random -Maximum 10000
+
 # Specify the resource group for the Cloudera VM and resources
-$resourceGroupName = 'clouderaworkshoprg'
+$resourceGroupName = 'clouderaworkshoprg' + $uniqueSuffix
 
 # Provide the name of the virtual machine
 $virtualMachineName = 'clouderavm'
@@ -19,24 +23,27 @@ $virtualMachineName = 'clouderavm'
 $virtualMachineSize = 'Standard_D8s_v4'
 
 # Provide the name of a virtual network and subnet where virtual machine will be created
-$virtualNetworkName = 'clouderavmvnet'
+$virtualNetworkName = 'clouderavmvnet' + $uniqueSuffix
 $subnetName = 'clouderasubnet'
 
 #VNet prefix for the VM
 $vnetprefix = '10.10.0.0'
 
 #Network security group name for the VNet
-$nsgName = 'clouderansg'
+$nsgName = 'clouderansg' + $uniqueSuffix
 
 # **DON'T CHANGE ANYTHING BELOW THIS POINT**
 
 $targetOS = 'Linux'
-$osDiskName = 'clouderadisk'
+$osDiskName = 'clouderadisk' + $uniqueSuffix
 $vhdSizeBytes = 68719477248
 
 # Create a resource group for holding the virtual machine
 Select-AzSubscription -SubscriptionId $SubscriptionId
-New-AzResourceGroup -Name $resourceGroupName -Location $location
+
+New-AzResourceGroup `
+    -Name $resourceGroupName `
+    -Location $location
 
 # Create the managed disk
 $targetDiskConfig = New-AzDiskConfig `
@@ -46,7 +53,8 @@ $targetDiskConfig = New-AzDiskConfig `
     -Location $location `
     -CreateOption 'Upload'
 
-$targetDisk = New-AzDisk -ResourceGroupName $resourceGroupName `
+$targetDisk = New-AzDisk `
+    -ResourceGroupName $resourceGroupName `
     -DiskName $osDiskName `
     -Disk $targetDiskConfig
 
