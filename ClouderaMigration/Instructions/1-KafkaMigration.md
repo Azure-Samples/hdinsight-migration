@@ -109,15 +109,9 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
      ![The **Home** link on a page in the Azure portal](../Images/1-Home-Link.png)
 
-1. On the Home page, hover over the **Resource groups** icon, and then select **Create**:
-
-    ![The Resource Groups icon on the Home page in the Azure portal](../Images/1-Home-Page.png)
-
-1. On the **Create a resource group** page,  select the same subscription and region that you used to create the Cloudera virtual machine. Name the resource group **clusterrg**, and then select **Review + create**.
-
-1. On the validation page, select **Create**, and wait while the resource group is created.
-
 1. On the Azure Home page, select **Create a resource**.
+
+    ![The Home page in the Azure portal](../Images/1-Home-Page.png)
 
 1. On the **New** page, in the **Search the Marketplace** box, type **virtual network**, and then select **Virtual Network** from the list that appears:
 
@@ -127,12 +121,15 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 1. On the **Basics** tab of the **Create virtual network** page, enter the following settings, and then select **Next : IP Addresses**:
 
+    > [!NOTE]
+    > In this table, replace the **9999** with the suffix that was generated to uniquely identify your resources as part of the lab setup.
+
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Name | clustervnet |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Name | clustervnet*9999* |
+    | Region | Select the same region used by the Cloudera virtual machine and the workshoprg*9999* resource group |
 
 
 1. On the **IP Addresses** tab, enter the following settings, and then select **Review + create**:
@@ -149,7 +146,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 ### Create the storage account
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **storage account**, and then select **Storage account** from the list that appears.
 
@@ -160,9 +157,9 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Storage account name | clusterstorage*nnnn*, where *nnnn* is a random four digit number you select to avoid clashing with other storage accounts |
-    | Location | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Storage account name | clusterstorage*9999*, where *9999* is your unique suffix |
+    | Location | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Performance | Standard |
     | Account Kind | StorageV2 (general purpose v2) |
     | Replication | Zone-redundant storage (ZRS) |
@@ -177,7 +174,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 ### Create the user assigned managed identity
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **user assigned**, and then select **User Assigned Managed Identity** from the list that appears.
 
@@ -188,8 +185,8 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Name | clustermanagedid |
 
 1. On the validation page, select **Create**, and wait while the user assigned managed identity is created.
@@ -212,7 +209,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Role | Storage Blob Data Owner |
     | Assign access to | User assigned managed identity |
     | Subscription | Select your subscription |
-    | Select | clustermanagedid |
+    | Select | Specify the clustermanagedid managed identity in the workshoprg*9999* resource group |
 
 1. Wait while the role is assigned, and then click **Role assignments** to verify that it has been assigned successfully:
 
@@ -220,7 +217,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 ### Create the Kafka cluster
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **Azure HDInsight**, and then select **Azure HDInsight** from the list that appears.
 
@@ -231,9 +228,9 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Cluster name | kafkacluster*nnnn*, where *nnnn* is the same random four digit number you selected when you created the storage account (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Cluster name | kafkacluster*9999*, where *9999* is your unique suffix |
+    | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Kafka |
     | Version | Kafka 2.1.1 (HDI 4.0) |
     | Cluster login name | admin |
@@ -260,7 +257,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     |-|-|
     | Enable enterprise security package | Leave unchecked |
     | Minimum TLS version | 1.2 |
-    | Virtual network | clustervnet/clusterrg |
+    | Virtual network | clustervnet*9999*/workshoprg*9999* |
     
     Leave all remaining settings on this tab with their default values.
 
@@ -284,15 +281,15 @@ In this task, you'll configure peering between the virtual network containing th
 
 ### Peer the virtual networks
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **clustervnet**:
+1. On the Home page in the Azure portal, under **Recent resources**, select **clustervnet*9999***:
 
     ![The **Recent resource** list on the Home page in the Azure portal. The user has selected the **clustervnet** virtual network](../Images/1-Recent-Resources.png)
 
-1. On the **clustervnet** page, under **Settings**, select **Peerings**:
+1. On the **clustervnet*9999*** page, under **Settings**, select **Peerings**:
 
     ![The **clustervnet** page in the Azure portal. The user has selected **Peerings**](../Images/1-Peerings.png)
 
-1. On the **clustervnet | Peerings** page, select **Add**:
+1. On the **clustervnet*9999* | Peerings** page, select **Add**:
 
     ![The **clustervnet | Peerings** page in the Azure portal. The user is about to add a new peering](../Images/1-Peerings-Add.png)
 
@@ -308,7 +305,7 @@ In this task, you'll configure peering between the virtual network containing th
     | Virtual network deployment model | Resource manager |
     | I know my resource ID | Leave unchecked |
     | Subscription | Select your subscription |
-    | Virtual network | clouderavmvnet (workshoprg) |
+    | Virtual network | clouderavmvnet*9999* |
     | Traffic to remote virtual network | Allow (default) |
     | Traffic forwarded from remote virtual network | Allow (default) |
     | Virtual network gateway | None (default) |
@@ -328,7 +325,9 @@ In this task, you'll configure peering between the virtual network containing th
     ![The Ambari home page, showing the running services.](../Images/1-Ambari-Home.png)
 
 
-1. In the left-hand pane, select the **Kafka** service. In the main pane, select **Configs**. In the **Filter** box, type **min.insync.replicas**. Change the value of **min.insync.replicas** to 1, and then select **Save**.
+1. In the left-hand pane, select the **Kafka** service. 
+
+1. In the main pane, select **Configs**. In the **Filter** box, type **min.insync.replicas**. Change the value of **min.insync.replicas** to 1, and then select **Save**.
 
     ![The Kafa configuration page in Ambari. The user has changed the **min.insync.replicas** setting to 1.](../Images/1-Configure-Kafka.png)
 
@@ -672,7 +671,7 @@ In this task, you'll update the producer application to post messages to topics 
         --topic flights --partitions 1
     ```
 
-1. Switch back to the SSH session for the Cloudera virtual machine.
+1. Switch back to the original SSH session for the Cloudera virtual machine.
 
 1. Run the following command to stop the **EventProducer** application:
 
@@ -713,3 +712,12 @@ Deleting the cluster doesn't delete the storage account or network resources. Yo
 1. In the confirmation pane, enter the name of the cluster, and then select **Delete**.
 
     ![The confirm cluster delete pane.](../Images/1-Delete-Confirm.png)
+
+---
+
+**NOTE:** 
+
+If you don't wish to perform any of the other exercises in this lab, you can delete the entire **workshoprg*9999*** resource group.
+
+---
+

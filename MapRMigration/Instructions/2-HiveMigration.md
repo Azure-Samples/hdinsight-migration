@@ -259,7 +259,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 ### Create the SQL database
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **SQL Database**, and then press Enter.
 
@@ -290,7 +290,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     
 ### Create the LLAP cluster
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **Azure HDInsight**, and then select **Azure HDInsight** from the list that appears.
 

@@ -14,7 +14,7 @@ $location = "East US"
 $uniqueSuffix = Get-Random -Maximum 10000
 
 # Specify the resource group for the Cloudera VM and resources
-$resourceGroupName = 'clouderaworkshoprg' + $uniqueSuffix
+$resourceGroupName = 'workshoprg' + $uniqueSuffix
 
 # Provide the name of the virtual machine
 $virtualMachineName = 'clouderavm'

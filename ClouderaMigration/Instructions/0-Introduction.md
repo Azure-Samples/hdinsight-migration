@@ -65,7 +65,7 @@ Perform the following tasks:
 
     **NOTE: BEFORE PUBLISHING THIS WORKSHOP, REPLACE THE URL BELOW WITH THE ADDRESS OF THE GITHUB REPO HOLDING THE SCRIPT**
     ```PowerShell
-    wget https://raw.githubusercontent.com/JohnPWSharp/HDInsight-Migration-Workshops/master/Setup/clouderasetup.ps1?token=AAONHQXIL7GSX2FBOX3IKQK77RWFQ -O clouderasetup.ps1
+    wget https://raw.githubusercontent.com/JohnPWSharp/HDInsight-Migration-Workshops/master/Setup/clouderasetup.ps1?token=AAONHQTYV5K6LA33NJH4EMDABGGDY -O clouderasetup.ps1
     ```
 
 1. In the Cloud Shell toolbar, select **Open editor**.
@@ -88,6 +88,8 @@ Perform the following tasks:
 
     As the script runs, you will see various messages when the resources are created. The script will take about 5 minutes to complete. When it has finished, it will display the IP address of the new virtual machine. Make a note of this address.
 
+    Additionally, the script will display a unique numeric suffix which you will use for creating further resources. Make a note of this suffix as well.
+
     ![The Azure Cloud Shell in the Azure portal. The script has completed. The IP address of the new virtual machine is highlighted.](../Images/0-ScriptCompleted.png)
 
 1. Connect using SSH as the **root** user as shown below. Replace **\<ip address\>** with the IP address of the virtual machine. The password is **Pa55w.rdDemo**. Enter **yes** when prompted to connect.
@@ -103,7 +105,6 @@ Perform the following tasks:
     ```PowerShell
     ssh root@<ip address>
     ```
-
 1. At the *bash* prompt, run the following command to set the password for the **azureuser** account. Provide a password of your own choosing. You'll use this account rather than root for running the Cloudera services.
 
     ```bash

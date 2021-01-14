@@ -16,7 +16,7 @@
 
 #### Create the virtual network
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **virtual network**, and then select **Virtual Network** from the list that appears:
 

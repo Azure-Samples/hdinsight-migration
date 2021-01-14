@@ -117,7 +117,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 1. On the validation page, select **Create**, and wait while the resource group is created.
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **virtual network**, and then select **Virtual Network** from the list that appears:
 
@@ -149,7 +149,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 ### Create the storage account
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **storage account**, and then select **Storage account** from the list that appears.
 
@@ -177,7 +177,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 ### Create the user assigned managed identity
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **user assigned**, and then select **User Assigned Managed Identity** from the list that appears.
 
@@ -220,7 +220,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 ### Create the Kafka cluster
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **Azure HDInsight**, and then select **Azure HDInsight** from the list that appears.
 

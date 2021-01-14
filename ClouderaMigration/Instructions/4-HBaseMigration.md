@@ -202,7 +202,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. If the Home page isn't currently displayed, click select the **Home** link in the upper left hand corner:
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **storage account**, and then select **Storage account** from the list that appears.
 
@@ -222,7 +222,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. On the validation page, select **Create**, and wait while the storage account is created.
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **user assigned**, and then select **User Assigned Managed Identity** from the list that appears.
 
@@ -258,7 +258,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 ### Create the HBase cluster
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **Azure HDInsight**, and then select **Azure HDInsight** from the list that appears.
 

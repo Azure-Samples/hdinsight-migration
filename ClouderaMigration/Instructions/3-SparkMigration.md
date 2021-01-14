@@ -283,7 +283,7 @@ Only perform the task in this section if you haven't performed Hive Migration ex
 
 1. Switch to the Azure portal in the web browser.
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **Azure HDInsight**, and then select **Azure HDInsight** from the list that appears.
 

@@ -1,6 +1,6 @@
 ## Create the SQL database
 
-1. On the Azure Home page, select **Create a resource**.
+1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **SQL Database**, and then press Enter.
 
