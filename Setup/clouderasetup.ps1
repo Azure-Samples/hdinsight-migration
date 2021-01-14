@@ -232,3 +232,4 @@ $ipAddr = (Get-AzPublicIpAddress `
     -ResourceGroupName $resourceGroupName).IpAddress
 
 echo "Virtual machine created. IP address is:" $ipAddr
+echo "Your unique suffix is:" $uniqueSuffix
