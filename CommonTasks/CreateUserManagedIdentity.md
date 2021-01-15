@@ -11,8 +11,8 @@
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Region | Select the same region used by the Cloudera or MapR virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Region | Select the same region used by the Cloudera or MapR virtual machine and the **workshoprg*9999*** resource group |
     | Name | clustermanagedid |
 
 1. On the validation page, select **Create**, and wait while the user assigned managed identity is created.
@@ -35,7 +35,7 @@
     | Role | Storage Blob Data Owner |
     | Assign access to | User assigned managed identity |
     | Subscription | Select your subscription |
-    | Select | clustermanagedid |
+    | Select | Specify the clustermanagedid managed identity in the workshoprg*9999* resource group |
 
 1. Wait while the role is assigned, and then click **Role assignments** to verify that it has been assigned successfully:
 

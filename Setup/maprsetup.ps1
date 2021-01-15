@@ -10,8 +10,12 @@ $sourceDataDiskSAS = '<Data Disk SAS>'
 # Specify the location for creating resources
 $location = "East US"
 
+# Generate a unique suffix for resources, 
+# to allow multiple copies to be created using the same subscription
+$uniqueSuffix = Get-Random -Maximum 10000
+
 # Specify the resource group for the MapR VM and resources
-$resourceGroupName = 'maprworkshoprg'
+$resourceGroupName = 'workshoprg' + $uniqueSuffix
 
 # Provide the name of the virtual machine
 $virtualMachineName = 'maprvm'
@@ -20,17 +24,17 @@ $virtualMachineName = 'maprvm'
 $virtualMachineSize = 'Standard_E8-4s_v4'
 
 # Provide the name of a virtual network and subnet where virtual machine will be created
-$virtualNetworkName = 'maprvmvnet'
+$virtualNetworkName = 'maprvmvnet' + $uniqueSuffix
 $subnetName = 'maprsubnet'
 
 # Network security group name for the VNet
-$nsgName = 'maprnsg'
+$nsgName = 'maprnsg' + $uniqueSuffix
 
 # **DON'T CHANGE ANYTHING BELOW THIS POINT**
 
 $targetOS = 'Linux'
-$osDiskName = 'maprosdisk'
-$dataDiskName = 'maprdatadisk'
+$osDiskName = 'maprosdisk' + $uniqueSuffix
+$dataDiskName = 'maprdatadisk' + $uniqueSuffix
 $osVhdSizeBytes = 137438953984
 $dataVhdSizeBytes = 137438953984
 

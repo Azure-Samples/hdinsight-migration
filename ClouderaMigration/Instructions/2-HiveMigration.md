@@ -190,7 +190,7 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
 
 1. At the **hive\>** prompt, run the following query:
 
-    ```hive
+    ```sql
     SELECT * FROM flightinfo;
     ```
 
@@ -220,7 +220,7 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
 
 1. Quit the **hive** utility, and close the SSH connection:
 
-    ```hive
+    ```sql
     exit;
     ```
 
@@ -274,9 +274,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Database name | hivedb*nnnn*, where *nnnn* is the same random four digit number you selected when you created the Kafka cluster (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Server | Select **Create new**. In the **New Server** pane, name the server **hiveserver*9999***, set the server admin login name to **azuresa**, provide a password of your choice, and specify the same location that you have used for other resources created during this lab. |
+    | Resource group | workshoprg*9999* where *9999* is the unique number assigned to you when you created the Cloudera virtual machine |
+    | Database name | hivedb*9999* |
+    | Server | Select **Create new**. In the **New Server** pane, name the server **hiveserver*9999***, set the server admin login name to **azuresa**, provide a password of your choice, and specify the same location that you have used for other resources created during this lab. Click **OK**. |
     | Want to use SQL elastic pool | No |
     | Compute + storage | Select **Configure database**. On the **General Purpose** tab, select **Serverless**, and then click **Apply**. |
 
@@ -305,9 +305,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Cluster name | llapcluster*nnnn*, where *nnnn* is the same random four digit number you used for the SQL Database (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Cluster name | llapcluster*9999* |
+    | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Interactive Query |
     | Version | Interactive Query 3.1.0 (HDI 4.0) |
     | Cluster login name | admin |
@@ -321,7 +321,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Primary storage type | Azure Data Lake Storage Gen2 |
-    | Primary storage account | Select the storage account you created earlier. (**clusterstorage*9999***)|
+    | Primary storage account | Select the storage account you created earlier (**clusterstorage*9999***)|
     | Filesystem | If you have performed the Kafka Migration exercise, reuse the same container that you created for the Kafka cluster, otherwise specify **cluster*9999*** |
     | Identity | clustermanagedid |
     | SQL database for Ambari | leave blank |
@@ -335,7 +335,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     |-|-|
     | Enable enterprise security package | Leave unchecked |
     | Minimum TLS version | 1.2 |
-    | Virtual network | clustervnet/clusterrg |
+    | Virtual network | clustervnet*9999*/workshoprg*9999* |
     
     Leave all remaining settings on this tab with their default values.
 
@@ -491,7 +491,9 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 
 1. Switch back to Ambari for the HDInsight cluster.
 
-1. In the left-hand pane, select **Hive**. In the main pane, on the **CONFIGS** tab, in the **filter** box, enter **strict**. 
+1. In the left-hand pane, select **Hive**. 
+
+1. In the main pane, on the **CONFIGS** tab, in the **filter** box, enter **strict**. 
 
 1. Under **Advanced hive-interactive-site** and **Advanced hive-site**, change the **hive.strict.managed.tables** setting to **false**, and select **SAVE**:
 
@@ -525,7 +527,8 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 1. Retrieve the storage account keys for the storage account:
 
     ```PowerShell
-    Get-AzStorageAccountKey -ResourceGroupName 'clusterrg' `
+    Get-AzStorageAccountKey `
+        -ResourceGroupName 'workshoprg<9999>' `
         -AccountName 'clusterstorage<9999>'
     ```
     
@@ -584,7 +587,7 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
         -ls -R wasbs://cluster<9999>@clusterstorage<9999>.blob.core.windows.net/staging/todaysinfo
     ```
 
-    The output should include the following files:
+    The output should include the following files and folders:
 
     ```text
     drwxr-xr-x   - azureuser supergroup          0 2020-11-10 14:17 wasbs://cluster<9999>@clusterstorage<9999>.blob.core.windows.net/staging/todaysinfo
@@ -673,9 +676,9 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 
     **You have now migrated the Hive database to HDInsight. To keep the data on the HDInsight cluster up-to-date, you can use the following general strategy:**
     
-    1. Save the note of the timestamp for the last record copied from the **flightinfo** table.
+    1. Save the note of the timestamp for the last record copied from the **flightinfo** table to HDInsight.
 
-    1. Using hive on the Cloudera cluster, run the following query to find the timestamp for the most recent change:
+    1. Using hive on the Cloudera cluster, use hive to run the following query to find the timestamp for the most recent change:
 
         ```sql
         SELECT MAX(`timestamp`) FROM flightinfo;
@@ -720,3 +723,11 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 1. In the command bar, select **Delete**.
 
 1. In the confirmation pane, enter the name of the cluster, and then select **Delete**.
+
+---
+
+**NOTE:** 
+
+If you don't wish to perform any of the other exercises in this lab, you can delete the entire **workshoprg*9999*** resource group.
+
+---

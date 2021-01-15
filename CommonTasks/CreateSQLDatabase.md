@@ -11,9 +11,9 @@
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Database name | hivedb*9999*, where *9999* is a random 4-digit number |
-    | Server | Select **Create new**. In the **New Server** pane, name the server **hiveserver*9999***, set the server admin login name to **azuresa**, provide a password of your choice, and specify the same location that you have used for other resources created during this lab. |
+    | Resource group | workshoprg*9999*, where *9999* is your unique identifier assigned when you created the Cloudera or MapR virtual machine |
+    | Database name | hivedb*9999* |
+    | Server | Select **Create new**. In the **New Server** pane, name the server **hiveserver*9999***, set the server admin login name to **azuresa**, provide a password of your choice, and specify the same location that you have used for other resources created during this lab. Select **OK**. |
     | Want to use SQL elastic pool | No |
     | Compute + storage | Select **Configure database**. On the **General Purpose** tab, select **Serverless**, and then click **Apply**. |
 

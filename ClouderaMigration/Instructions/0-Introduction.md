@@ -92,7 +92,7 @@ Perform the following tasks:
 
     ![The Azure Cloud Shell in the Azure portal. The script has completed. The IP address of the new virtual machine is highlighted.](../Images/0-ScriptCompleted.png)
 
-1. Connect using SSH as the **root** user as shown below. Replace **\<ip address\>** with the IP address of the virtual machine. The password is **Pa55w.rdDemo**. Enter **yes** when prompted to connect.
+1. Connect using SSH as the **azureuser** user as shown below. Replace **\<ip address\>** with the IP address of the virtual machine. The password is **Pa55w.rdDemo**. Enter **yes** when prompted to connect.
 
     ---
 
@@ -103,12 +103,12 @@ Perform the following tasks:
     ---
 
     ```PowerShell
-    ssh root@<ip address>
+    ssh azureuser@<ip address>
     ```
-1. At the *bash* prompt, run the following command to set the password for the **azureuser** account. Provide a password of your own choosing. You'll use this account rather than root for running the Cloudera services.
+1. At the *bash* prompt, run the following command to change the password for the **azureuser** account. Provide a password of your own choosing.
 
     ```bash
-    passwd azureuser
+    passwd
     ```
 
 1. Run the following command to sign out from the virtual machine and return to the PowerShell prompt:

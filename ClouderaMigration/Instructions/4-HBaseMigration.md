@@ -190,7 +190,7 @@ In this task, you'll create an HDInsight HBase cluster. If you have completed th
 
 **NOTE:**
 
-Only perform the tasks in this section if you haven't performed the Kakfa Migration, Hive Migration, or Spark Migration exercises, otherwise skip to the task [Create the storage account](#Create-the-storage-account).
+Only perform the task in this section if you haven't performed the Kakfa Migration, Hive Migration, or Spark Migration exercises, otherwise skip to the task [Create the storage account](#Create-the-storage-account).
 
 ---
 
@@ -202,7 +202,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. If the Home page isn't currently displayed, click select the **Home** link in the upper left hand corner:
 
-1. Go to the Azure Home page and select **Create a resource**.
+1. On the Azure Home page select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **storage account**, and then select **Storage account** from the list that appears.
 
@@ -213,9 +213,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Storage account name | hbasestorage*nnnn*, where *nnnn* is a random four digit number you select to avoid clashing with other storage accounts |
-    | Location | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999*, where *9999* is the unique identifier assigned to you when you created the Cloudera virtual machine |
+    | Storage account name | hbasestorage*9999* |
+    | Location | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Performance | Premium |
     | Account kind | BlockBlobStorage |
     | Replication | Locally-redundant storage (LRS) |
@@ -233,8 +233,8 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Region | Select the same region used by the Cloudera or MapR virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Region | Select the same region used by the Cloudera or MapR virtual machine and the **workshoprg*9999*** resource group |
     | Name | hbasemanagedid |
 
 1. On the validation page, select **Create**, and wait while the user assigned managed identity is created.
@@ -252,7 +252,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Role | Storage Blob Data Owner |
     | Assign access to | User assigned managed identity |
     | Subscription | Select your subscription |
-    | Select | hbasemanagedid |
+    | Select | Specify the hbasemanagedid managed identity in the workshoprg*9999* resource group |
 
 1. Wait while the role is assigned, and then click **Role assignments** to verify that it has been assigned successfully.
 
@@ -269,9 +269,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Cluster name | hbasecluster*nnnn*, where *nnnn* is the same random four digit number you selected when you created the storage account (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Cluster name | hbasecluster*9999* |
+    | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | HBase |
     | Version | HBase 2.1.6 (HDI 4.0) |
     | Enable HBase accelerated writes | checked |
@@ -299,7 +299,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     |-|-|
     | Enable enterprise security package | Leave unchecked |
     | Minimum TLS version | 1.2 |
-    | Virtual network | clustervnet/clusterrg |
+    | Virtual network | clustervnet*9999*/workshoprg*9999* |
     
     Leave all remaining settings on this tab with their default values.
 
@@ -325,7 +325,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. Sign in to Ambari as **admin** with password **Pa55w.rdDemo** when prompted.
 
-1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefix starting **wn*X***.
+1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefix starting **wn*X*** (**wn0**, **wn1**, **wn3**, and so on).
 
 1. Return to the **Command Prompt** window displaying the SSH connection to the Cloudera virtual machine.
 
@@ -493,17 +493,17 @@ In this task, you'll create a snapshot of the HBase database in the Cloudera clu
 
 1. On the Home page in the Azure portal, under **Recent resources**, select **hbasestorage*9999***.
 
-1. Under **Settings**, select **Access keys**, and make a note of the value for the **key1** key:
+1. Under **Settings**, select **Access keys**. Select **Show keys**, and make a note of the value for the **key1** key:
 
     ![The **Access keys** page for the cluster storage account. The user has selected **key1**.](../Images/4-StorageKeys.png)
 
 1. Return to the SSH session on the Cloudera virtual machine.
 
-1. Export the **snapshot1** snapshot to the **/hbase** directory on the HDInsight cluster. This is the home directory of HBase on the HDInsight cluster. As before, replace **\<9999\>** with the numeric identifier for your storage account, and replace **\<account key\>** with the value of the **key1** key for the storage account.
+1. Export the **snapshot1** snapshot to the **/hbase** directory on the HDInsight cluster. This is the home directory of HBase on the HDInsight cluster. As before, replace **\<9999\>** with the numeric identifier for your storage account, and replace **\<key\>** with the value of the **key1** key for the storage account.
 
     ```bash
     hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot \
-    -D fs.azure.account.key.hbasestorage<9999>.blob.core.windows.net='<account key>' \
+    -D fs.azure.account.key.hbasestorage<9999>.blob.core.windows.net='<key>' \
     -snapshot 'snapshot1' \
     -copy-to 'wasbs://cluster<9999>@hbasestorage<9999>.blob.core.windows.net/hbase'
     ```
@@ -572,6 +572,10 @@ The operations described in this task assume that the data in the HBase database
 ### Perform an incremental export
 
 1. Return to the SSH session on the Cloudera virtual machine and start the hbase shell.
+
+    ```bash
+    hbase shell
+    ```
 
 1. Run the following command to retrieve the data for the **info** column family in the last row added to the **flights** table:
 
@@ -689,3 +693,11 @@ The operations described in this task assume that the data in the HBase database
 1. In the command bar, select **Delete**.
 
 1. In the confirmation pane, enter the name of the cluster, and then select **Delete**.
+
+---
+
+**NOTE:** 
+
+If you don't wish to perform any of the other exercises in this lab, you can delete the entire **workshoprg*9999*** resource group.
+
+---

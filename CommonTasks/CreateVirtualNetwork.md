@@ -6,17 +6,9 @@
 
      ![The **Home** link on a page in the Azure portal](../ClouderaMigration/Images/1-Home-Link.png)
 
-1. On the Home page, hover over the **Resource groups** icon, and then select **Create**:
+1. On the Home page select **Create a resource**.
 
     ![The Resource Groups icon on the Home page in the Azure portal](../ClouderaMigration/Images/1-Home-Page.png)
-
-1. On the **Create a resource group** page,  select the same subscription and region that you used to create the Cloudera or MapR virtual machine. Name the resource group **clusterrg**, and then select **Review + create**.
-
-1. On the validation page, select **Create**, and wait while the resource group is created.
-
-#### Create the virtual network
-
-1. Go to the Azure Home page and select **Create a resource**.
 
 1. On the **New** page, in the **Search the Marketplace** box, type **virtual network**, and then select **Virtual Network** from the list that appears:
 
@@ -26,13 +18,14 @@
 
 1. On the **Basics** tab of the **Create virtual network** page, enter the following settings, and then select **Next : IP Addresses**:
 
+    > [!NOTE]
+    > In this table, replace the **9999** with the suffix that was generated to uniquely identify your resources as part of the lab setup.
+
     | Field | Value|
     |-|-|
-    | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Name | clustervnet |
-    | Region | Select the same region used by the Cloudera or MapR virtual machine and the **clusterrg** resource group |
-
+    | Resource group | workshoprg*9999* |
+    | Name | clustervnet*9999* |
+    | Region | Select the same region used by the Cloudera or MapR virtual machine and the workshoprg*9999* resource group |
 
 1. On the **IP Addresses** tab, enter the following settings, and then select **Review + create**:
 

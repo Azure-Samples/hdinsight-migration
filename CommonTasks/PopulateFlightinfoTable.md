@@ -21,7 +21,8 @@ This procedure shows a quick way to transfer a small amount of data held as a CS
 1. Retrieve the storage account keys for the storage account:
 
     ```PowerShell
-    Get-AzStorageAccountKey -ResourceGroupName 'clusterrg' `
+    Get-AzStorageAccountKey `
+        -ResourceGroupName 'workshoprg<9999>' `
         -AccountName 'clusterstorage<9999>'
     ```
 
@@ -77,9 +78,29 @@ This procedure shows a quick way to transfer a small amount of data held as a CS
 
     ```bash
     hdfs dfs \
-    -D fs.azure.account.key.clusterstorage<9999>.blob.core.windows.net="<key>" \
+    -D fs.azure.account.key.clusterstorage<9999>.blob.core.windows.net='<key>' \
     -copyFromLocal \
         flightinfo.csv \
         'wasbs://cluster<9999>@clusterstorage<9999>.blob.core.windows.net/temp/flightinfo.csv'
+    ```
+
+1. Return to the shell prompt for the SSH session connected to the Azure HDInsight head node.
+
+1. Start the **beeline** utility:
+
+    ```bash
+    beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http'
+    ```
+
+1. Run the following command to update the statistical data for the **flightinfo** table:
+
+    ```sql
+    ANALYZE TABLE flightinfo COMPUTE STATISTICS;
+    ```
+
+1. Exit the **beeline** utility and return to the shell prompt:
+
+    ```sql
+    !quit
     ```
 

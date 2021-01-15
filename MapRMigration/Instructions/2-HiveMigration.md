@@ -187,7 +187,7 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
 
 1. At the beeline prompt, run the following query:
 
-    ```hive
+    ```sql
     SELECT * FROM flightinfo;
     ```
 
@@ -217,7 +217,7 @@ In a *fully migrated* system, the Spark application would run on an HDInsight Sp
 
 1. Quit the beeline utility, and close the second SSH connection:
 
-    ```hive
+    ```sql
     !quit
     ```
 
@@ -270,8 +270,8 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Database name | hivedb*nnnn*, where *nnnn* is the same random four digit number you selected when you created the Kafka cluster (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
+    | Resource group | workshoprg*9999* |
+    | Database name | hivedb*9999*, where *9999* is the same random four digit number you selected when you created the Kafka cluster (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
     | Server | Select **Create new**. In the **New Server** pane, name the server **hiveserver*9999***, set the server admin login name to **azuresa**, provide a password of your choice, and specify the same location that you have used for other resources created during this lab. |
     | Want to use SQL elastic pool | No |
     | Compute + storage | Select **Configure database**. On the **General Purpose** tab, select **Serverless**, and then click **Apply**. |
@@ -301,9 +301,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Cluster name | llapcluster*nnnn*, where *nnnn* is the same random four digit number you used for the SQL Database (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Region | Select the same region used by the MapR virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999* |
+    | Cluster name | llapcluster*9999*, where *9999* is the same random four digit number you used for the SQL Database (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
+    | Region | Select the same region used by the MapR virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Interactive Query |
     | Version | Interactive Query 3.1.0 (HDI 4.0) |
     | Cluster login name | admin |
@@ -331,7 +331,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     |-|-|
     | Enable enterprise security package | Leave unchecked |
     | Minimum TLS version | 1.2 |
-    | Virtual network | clustervnet/clusterrg |
+    | Virtual network | clustervnet/workshoprg*9999* |
     
     Leave all remaining settings on this tab with their default values.
 
@@ -517,7 +517,7 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 1. Retrieve the storage account keys for the storage account:
 
     ```PowerShell
-    Get-AzStorageAccountKey -ResourceGroupName 'clusterrg' `
+    Get-AzStorageAccountKey -ResourceGroupName 'workshoprg*9999*' `
         -AccountName 'clusterstorage<9999>'
     ```
     
@@ -693,9 +693,9 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 
     **You have now migrated the Hive database to HDInsight. To keep the data on the HDInsight cluster up-to-date, you can use the following general strategy:**
     
-    1. Save the note of the timestamp for the last record copied from the **flightinfo** table.
+    1. Save the note of the timestamp for the last record copied from the **flightinfo** table to HDInsight.
 
-    1. Using hive on the Cloudera cluster, run the following query to find the timestamp for the most recent change:
+    1. Using hive on the Mapr cluster, run the following query to find the timestamp for the most recent change:
 
         ```sql
         SELECT MAX(`timestamp`) FROM flightinfo;
@@ -740,3 +740,11 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 1. In the command bar, select **Delete**.
 
 1. In the confirmation pane, enter the name of the cluster, and then select **Delete**.
+
+---
+
+**NOTE:** 
+
+If you don't wish to perform any of the other exercises in this lab, you can delete the entire **workshoprg*9999*** resource group.
+
+---

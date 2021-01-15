@@ -294,9 +294,9 @@ Only perform the task in this section if you haven't performed Hive Migration ex
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | clusterrg |
-    | Cluster name | sparkcluster*nnnn*, where *nnnn* is the same random four digit number you used for the SQL Database (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Region | Select the same region used by the Cloudera virtual machine and the **clusterrg** resource group |
+    | Resource group | workshoprg*9999*, where *9999* is the unique identifer assigned to you when you created the Cloudera virtual machine. |
+    | Cluster name | sparkcluster*9999* |
+    | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Spark |
     | Version | Spark 2.4 (HDI 4.0) |
     | Cluster login name | admin |
@@ -311,7 +311,7 @@ Only perform the task in this section if you haven't performed Hive Migration ex
     |-|-|
     | Primary storage type | Azure Data Lake Storage Gen2 |
     | Primary storage account | Select the storage account you created earlier (**clusterstorage*9999***)|
-    | Filesystem | Reuse the same container that you created for the Kafka and Hive clusters (**cluster*9999***) |
+    | Filesystem | **cluster*9999***.  Note that if you have performed the previous exercises, you should reuse the same container that you created in those exercises. |
     | Identity | clustermanagedid |
     | SQL database for Ambari | leave blank |
     | SQL database for Hive | hiveserver*9999*/hivedb*9999* |
@@ -324,7 +324,7 @@ Only perform the task in this section if you haven't performed Hive Migration ex
     |-|-|
     | Enable enterprise security package | Leave unchecked |
     | Minimum TLS version | 1.2 |
-    | Virtual network | clustervnet/clusterrg |
+    | Virtual network | clustervnet*9999*/workshoprg*9999* |
     
     Leave all remaining settings on this tab with their default values.
 
@@ -352,7 +352,7 @@ Only perform the task in this section if you haven't performed Hive Migration ex
 
     ![The Ambari home page, showing the running services for the Spark cluster.](../Images/3-Ambari-Home.png)
 
-1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefixes **wn0**, **wn1**, and **wn2**. Also, record the IP address of the first head node, with the prefix **hn0**.
+1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefixes **wn*X*** (for example, **wn0**, **wn1**, **wn2**, **wn3**, etc). Also, record the IP address of the first head node, with the prefix **hn0**.
 
 1. Return to the **Command Prompt** window displaying the SSH connection to the Cloudera virtual machine.
 
@@ -481,7 +481,8 @@ If you have completed the Hive Migration exercise, the **flightinfo** table shou
 1. Retrieve the storage account keys for the storage account:
 
     ```PowerShell
-    Get-AzStorageAccountKey -ResourceGroupName 'clusterrg' `
+    Get-AzStorageAccountKey `
+        -ResourceGroupName 'workshoprg<9999>' `
         -AccountName 'clusterstorage<9999>'
     ```
     
@@ -619,9 +620,7 @@ By default, Spark running on an HDInsight cluster connects to its own local inst
 
 ---
 
-1. Return to the Jupyter page for the HDInsight Spark cluster.
-
-1. Select the **FlightStats.ipynb** notebook.
+1. On the Jupyter page for the HDInsight Spark cluster, select the **FlightStats.ipynb** notebook.
 
 1. When the notebook opens, it will prompt you for the kernel to use. Select the **PySpark3** kernel, and then select **OK**.
 
@@ -661,3 +660,11 @@ By default, Spark running on an HDInsight cluster connects to its own local inst
 1. In the command bar, select **Delete**.
 
 1. In the confirmation pane, enter the name of the cluster, and then select **Delete**.
+
+---
+
+**NOTE:** 
+
+If you don't wish to perform any of the other exercises in this lab, you can delete the entire **workshoprg*9999*** resource group.
+
+---
