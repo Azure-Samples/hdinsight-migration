@@ -202,7 +202,11 @@ Only perform the task in this section if you haven't performed the Kakfa Migrati
 
 1. If the Home page isn't currently displayed, click select the **Home** link in the upper left hand corner:
 
-1. On the Azure Home page select **Create a resource**.
+     ![The **Home** link on a page in the Azure portal](../Images/1-Home-Link.png)
+
+1. On the Azure Home page, select **Create a resource**.
+
+    ![The Home page in the Azure portal](../Images/1-Home-Page.png)
 
 1. On the **New** page, in the **Search the Marketplace** box, type **storage account**, and then select **Storage account** from the list that appears.
 

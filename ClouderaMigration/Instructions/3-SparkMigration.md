@@ -281,9 +281,15 @@ Only perform the task in this section if you haven't performed Hive Migration ex
 
 ### Create the Spark cluster
 
-1. Switch to the Azure portal in the web browser.
+1. Return to the Azure portal in the web browser.
 
-1. Go to the Azure Home page and select **Create a resource**.
+1. If the Home page isn't currently displayed, click select the **Home** link in the upper left hand corner:
+
+     ![The **Home** link on a page in the Azure portal](../Images/1-Home-Link.png)
+
+1. On the Azure Home page, select **Create a resource**.
+
+    ![The Home page in the Azure portal](../Images/1-Home-Page.png)
 
 1. On the **New** page, in the **Search the Marketplace** box, type **Azure HDInsight**, and then select **Azure HDInsight** from the list that appears.
 

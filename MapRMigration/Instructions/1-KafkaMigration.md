@@ -109,15 +109,9 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
      ![The **Home** link on a page in the Azure portal](../Images/1-Home-Link.png)
 
-1. On the Home page, hover over the **Resource groups** icon, and then select **Create**:
+1. On the Home page select **Create a resource**.
 
-    ![The Resource Groups icon on the Home page in the Azure portal](../Images/1-Home-Page.png)
-
-1. On the **Create a resource group** page,  select the same subscription and region that you used to create the MapR virtual machine. Name the resource group **workshoprg*9999***, and then select **Review + create**.
-
-1. On the validation page, select **Create**, and wait while the resource group is created.
-
-1. Go to the Azure Home page and select **Create a resource**.
+    ![The Home page in the Azure portal](../Images/1-Home-Page.png)
 
 1. On the **New** page, in the **Search the Marketplace** box, type **virtual network**, and then select **Virtual Network** from the list that appears:
 
@@ -135,7 +129,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     |-|-|
     | Subscription | Select your subscription |
     | Resource group | workshoprg*9999* |
-    | Name | clustervnet |
+    | Name | clustervnet*9999* |
     | Region | Select the same region used by the MapR virtual machine and the **workshoprg*9999*** resource group |
 
 
@@ -164,8 +158,8 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | workshoprg*9999* |
-    | Storage account name | clusterstorage*9999*, where *9999* is your unique suffix |
+    | Resource group | workshoprg*9999*, where *9999* is your unique suffix |
+    | Storage account name | clusterstorage*9999* |
     | Location | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Performance | Standard |
     | Account Kind | StorageV2 (general purpose v2) |
@@ -235,8 +229,8 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | workshoprg*9999* |
-    | Cluster name | kafkacluster*9999*, where *9999* is your unique suffix |
+    | Resource group | workshoprg*9999*, where *9999* is your unique suffix |
+    | Cluster name | kafkacluster*9999* |
     | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Kafka |
     | Version | Kafka 2.1.1 (HDI 4.0) |
@@ -264,7 +258,7 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     |-|-|
     | Enable enterprise security package | Leave unchecked |
     | Minimum TLS version | 1.2 |
-    | Virtual network | clustervnet/workshoprg*9999* |
+    | Virtual network | clustervnet*9999*/workshoprg*9999* |
     
     Leave all remaining settings on this tab with their default values.
 
@@ -288,15 +282,15 @@ In this task, you'll configure peering between the virtual network containing th
 
 ### Peer the virtual networks
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **clustervnet**:
+1. On the Home page in the Azure portal, under **Recent resources**, select **clustervnet*9999***:
 
     ![The **Recent resource** list on the Home page in the Azure portal. The user has selected the **clustervnet** virtual network](../Images/1-Recent-Resources.png)
 
-1. On the **clustervnet** page, under **Settings**, select **Peerings**:
+1. On the **clustervnet*9999*** page, under **Settings**, select **Peerings**:
 
     ![The **clustervnet** page in the Azure portal. The user has selected **Peerings**](../Images/1-Peerings.png)
 
-1. On the **clustervnet | Peerings** page, select **Add**:
+1. On the **clustervnet*9999* | Peerings** page, select **Add**:
 
     ![The **clustervnet | Peerings** page in the Azure portal. The user is about to add a new peering](../Images/1-Peerings-Add.png)
 
@@ -312,14 +306,14 @@ In this task, you'll configure peering between the virtual network containing th
     | Virtual network deployment model | Resource manager |
     | I know my resource ID | Leave unchecked |
     | Subscription | Select your subscription |
-    | Virtual network | maprvmvnet (workshoprg) |
+    | Virtual network | maprvmvnet*9999* |
     | Traffic to remote virtual network | Allow (default) |
     | Traffic forwarded from remote virtual network | Allow (default) |
     | Virtual network gateway | None (default) |
     
 1. Wait while the network peerings are created.
 
-### Configure the clusters to support MirrorMaker
+### Configure the cluster to support MirrorMaker
 
 1. On the Home page in the Azure portal, under **Recent resources**, select **kafkacluster*9999***.
 
@@ -352,7 +346,7 @@ In this task, you'll configure peering between the virtual network containing th
 
     ![The **Background Operations** page in Ambari. The Kafka service has restarted.](../Images/1-Restart-Kafka.png)
 
-1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefixes **wn0**, **wn1**, and **wn2**.
+1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefixes **wn*X*** (for example, **wn0**, **wn1**, and **wn2**).
 
     ![The **Hosts** page in Ambari. The names and addresses of the worker nodes are highlighted.](../Images/1-Worker-Addresses.png)
 
@@ -455,7 +449,7 @@ In this task, you'll configure peering between the virtual network containing th
     exit
     ```
 
-1. Connect to the first worker node. The password is **Pa55w.rdDemo**, as before:
+1. Connect to the first worker node (**wn0-kafkac** in the example below). The password is **Pa55w.rdDemo**, as before:
 
     ```bash
     ssh wn0-kafkac
@@ -465,7 +459,7 @@ In this task, you'll configure peering between the virtual network containing th
 
 1. Disconnect from the wn0-kafkac node, and return to the head node of the cluster.
 
-1. Repeat the previous three steps for the two remaining worker nodes, **wn1-kafkac** and **wn1-kafkac**.
+1. Repeat the previous three steps for the two remaining worker nodes (for example **wn1-kafkac** and **wn2-kafkac**).
 
     ---
 

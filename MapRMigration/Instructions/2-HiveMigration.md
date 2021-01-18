@@ -259,7 +259,15 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 ### Create the SQL database
 
-1. Go to the Azure Home page and select **Create a resource**.
+1. Return to the Azure portal in the web browser.
+
+1. If the Home page isn't currently displayed, click select the **Home** link in the upper left hand corner:
+
+     ![The **Home** link on a page in the Azure portal](../Images/1-Home-Link.png)
+
+1. On the Azure Home page, select **Create a resource**.
+
+    ![The Home page in the Azure portal](../Images/1-Home-Page.png).
 
 1. On the **New** page, in the **Search the Marketplace** box, type **SQL Database**, and then press Enter.
 
@@ -331,7 +339,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     |-|-|
     | Enable enterprise security package | Leave unchecked |
     | Minimum TLS version | 1.2 |
-    | Virtual network | clustervnet/workshoprg*9999* |
+    | Virtual network | clustervnet*9999*/workshoprg*9999* |
     
     Leave all remaining settings on this tab with their default values.
 
@@ -517,7 +525,7 @@ By default, the Hive LLAP server is configured to enforce *strict* mode for mana
 1. Retrieve the storage account keys for the storage account:
 
     ```PowerShell
-    Get-AzStorageAccountKey -ResourceGroupName 'workshoprg*9999*' `
+    Get-AzStorageAccountKey -ResourceGroupName 'workshoprg<9999>' `
         -AccountName 'clusterstorage<9999>'
     ```
     

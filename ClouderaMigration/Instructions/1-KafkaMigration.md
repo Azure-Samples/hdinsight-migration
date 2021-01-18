@@ -157,8 +157,8 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | workshoprg*9999* |
-    | Storage account name | clusterstorage*9999*, where *9999* is your unique suffix |
+    | Resource group | workshoprg*9999*, where *9999* is your unique suffix |
+    | Storage account name | clusterstorage*9999* |
     | Location | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Performance | Standard |
     | Account Kind | StorageV2 (general purpose v2) |
@@ -228,8 +228,8 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | workshoprg*9999* |
-    | Cluster name | kafkacluster*9999*, where *9999* is your unique suffix |
+    | Resource group | workshoprg*9999*, where *9999* is your unique suffix |
+    | Cluster name | kafkacluster*9999* |
     | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Kafka |
     | Version | Kafka 2.1.1 (HDI 4.0) |
@@ -312,7 +312,7 @@ In this task, you'll configure peering between the virtual network containing th
     
 1. Wait while the network peerings are created.
 
-### Configure the clusters to support MirrorMaker
+### Configure the cluster to support MirrorMaker
 
 1. On the Home page in the Azure portal, under **Recent resources**, select **kafkacluster*9999***.
 
@@ -327,7 +327,7 @@ In this task, you'll configure peering between the virtual network containing th
 
 1. In the left-hand pane, select the **Kafka** service. 
 
-1. In the main pane, select **Configs**. In the **Filter** box, type **min.insync.replicas**. Change the value of **min.insync.replicas** to 1, and then select **Save**.
+1. In the main pane, select **CONFIGS**. In the **Filter** box, type **min.insync.replicas**. Change the value of **min.insync.replicas** to 1, and then select **Save**.
 
     ![The Kafa configuration page in Ambari. The user has changed the **min.insync.replicas** setting to 1.](../Images/1-Configure-Kafka.png)
 
@@ -347,7 +347,7 @@ In this task, you'll configure peering between the virtual network containing th
 
     ![The **Background Operations** page in Ambari. The Kafka service has restarted.](../Images/1-Restart-Kafka.png)
 
-1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefixes **wn0**, **wn1**, and **wn2**.
+1. In the left-hand pane of the Ambari page, select **Hosts**. Make a note of the name prefixes and IP addresses of the worker nodes with the prefixes **wn*X*** (for example, **wn0**, **wn1**, and **wn2**).
 
     ![The **Hosts** page in Ambari. The names and addresses of the worker nodes are highlighted.](../Images/1-Worker-Addresses.png)
 
@@ -452,7 +452,7 @@ In this task, you'll configure peering between the virtual network containing th
     exit
     ```
 
-1. Connect to the first worker node. The password is **Pa55w.rdDemo**, as before:
+1. Connect to the first worker node (**wn0-kafkac** in the example below). The password is **Pa55w.rdDemo**, as before:
 
     ```bash
     ssh wn0-kafkac
@@ -462,7 +462,7 @@ In this task, you'll configure peering between the virtual network containing th
 
 1. Disconnect from the wn0-kafkac node, and return to the head node of the cluster.
 
-1. Repeat the previous three steps for the two remaining worker nodes, **wn1-kafkac** and **wn2-kafkac**.
+1. Repeat the previous three steps for the two remaining worker nodes (for example **wn1-kafkac** and **wn2-kafkac**).
 
     ---
 
