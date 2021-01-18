@@ -127,6 +127,10 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 1. On the **Basics** tab of the **Create virtual network** page, enter the following settings, and then select **Next : IP Addresses**:
 
+
+    > [!NOTE]
+    > In this table, replace the **9999** with the suffix that was generated to uniquely identify your resources as part of the lab setup.
+    
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
@@ -161,10 +165,10 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     |-|-|
     | Subscription | Select your subscription |
     | Resource group | workshoprg*9999* |
-    | Storage account name | clusterstorage*9999*, where *9999* is a random four digit number you select to avoid clashing with other storage accounts |
-    | Location | Select the same region used by the MapR virtual machine and the **workshoprg*9999*** resource group |
+    | Storage account name | clusterstorage*9999*, where *9999* is your unique suffix |
+    | Location | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Performance | Standard |
-    | Account kind | StorageV2 (general purpose v2) |
+    | Account Kind | StorageV2 (general purpose v2) |
     | Replication | Zone-redundant storage (ZRS) |
 
 1. On the **Networking** tab, accept the default settings, and then select **Next : Data protection**.
@@ -232,8 +236,8 @@ In this task, you'll create a new virtual network and subnet to host the cluster
     |-|-|
     | Subscription | Select your subscription |
     | Resource group | workshoprg*9999* |
-    | Cluster name | kafkacluster*9999*, where *9999* is the same random four digit number you selected when you created the storage account (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Region | Select the same region used by the MapR virtual machine and the **workshoprg*9999*** resource group |
+    | Cluster name | kafkacluster*9999*, where *9999* is your unique suffix |
+    | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Kafka |
     | Version | Kafka 2.1.1 (HDI 4.0) |
     | Cluster login name | admin |

@@ -270,9 +270,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     | Field | Value|
     |-|-|
     | Subscription | Select your subscription |
-    | Resource group | workshoprg*9999* |
-    | Database name | hivedb*9999*, where *9999* is the same random four digit number you selected when you created the Kafka cluster (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Server | Select **Create new**. In the **New Server** pane, name the server **hiveserver*9999***, set the server admin login name to **azuresa**, provide a password of your choice, and specify the same location that you have used for other resources created during this lab. |
+    | Resource group | workshoprg*9999* where *9999* is the unique number assigned to you when you created the Cloudera virtual machine |
+    | Database name | hivedb*9999* |
+    | Server | Select **Create new**. In the **New Server** pane, name the server **hiveserver*9999***, set the server admin login name to **azuresa**, provide a password of your choice, and specify the same location that you have used for other resources created during this lab. Click **OK**. |
     | Want to use SQL elastic pool | No |
     | Compute + storage | Select **Configure database**. On the **General Purpose** tab, select **Serverless**, and then click **Apply**. |
 
@@ -302,8 +302,8 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
     |-|-|
     | Subscription | Select your subscription |
     | Resource group | workshoprg*9999* |
-    | Cluster name | llapcluster*9999*, where *9999* is the same random four digit number you used for the SQL Database (if necessary, you can use a different number, but for consistency try and reuse the same value if possible) |
-    | Region | Select the same region used by the MapR virtual machine and the **workshoprg*9999*** resource group |
+    | Cluster name | llapcluster*9999* |
+    | Region | Select the same region used by the Cloudera virtual machine and the **workshoprg*9999*** resource group |
     | Cluster type | Interactive Query |
     | Version | Interactive Query 3.1.0 (HDI 4.0) |
     | Cluster login name | admin |
