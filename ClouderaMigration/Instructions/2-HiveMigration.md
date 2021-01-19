@@ -250,7 +250,7 @@ In this task, you'll create an HDInsight LLAP cluster for running Hive. If you h
 
 **NOTE:**
 
-Only perform the tasks in this section if you haven't performed the Kakfa Migration exercise, otherwise skip to the task [Create the SQL database](#Create-the-SQL-database).
+Only perform the steps in this section if you haven't performed the Kakfa Migration exercise, otherwise skip to the task [Create the SQL database](#Create-the-SQL-database).
 
 ---
 1. Perform the steps in the document [Create the virtual network](../../CommonTasks/CreateVirtualNetwork.md)
@@ -290,7 +290,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. On the **Create SQL Database** page, select **Create**, and wait while the database and server are created.
 
-1. On the Azure Home page, under **Recent resources**, select **hivedb*9999***
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **hivedb*9999***.
 
 1. On the **hivedb*9999*** page, select **Set server firewall**.
 
@@ -363,7 +365,9 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 1. If you haven't performed the Kakfa Migration exercise, perform the steps in the document [Peer the virtual networks](../../CommonTasks/PeerVirtualNetworks.md)
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **llapcluster*9999***.
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **llapcluster*9999***.
 
 1. On the **Overview** page for the cluster, under **Dashboards**, select **Ambari home**.
 

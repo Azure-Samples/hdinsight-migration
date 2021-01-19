@@ -19,7 +19,9 @@
 
 1. On the **Create SQL Database** page, select **Create**, and wait while the database and server are created.
 
-1. On the Azure Home page, under **Recent resources**, select **hivedb*9999***
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **hivedb*9999***.
 
 1. On the **hivedb*9999*** page, select **Set server firewall**.
 

@@ -190,7 +190,7 @@ In this task, you'll create an HDInsight HBase cluster. If you have completed th
 
 **NOTE:**
 
-Only perform the task in this section if you haven't performed the Kakfa Migration, Hive Migration, or Spark Migration exercises, otherwise skip to the task [Create the storage account](#Create-the-storage-account).
+Only perform the steps in this section if you haven't performed the Kakfa Migration, Hive Migration, or Spark Migration exercises, otherwise skip to the task [Create the storage account](#Create-the-storage-account).
 
 ---
 
@@ -243,11 +243,18 @@ Only perform the task in this section if you haven't performed the Kakfa Migrati
 
 1. On the validation page, select **Create**, and wait while the user assigned managed identity is created.
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **hbasestorage*9999***.
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
 
-1. On the **hbasestorage*9999*** page select **Access Control (IAM)**.
+1. On the **workshoprg*9999*** resource group page, select  **hbasestorage*9999***.
 
-1. On the **hbasestorage*9999* | Access Control (IAM)** page select **Add**, and then select **Add role assignment**:
+1. On the **hbasestorage*9999*** page, select **Access Control (IAM)**:
+
+    ![The **hbasestorage*9999*** page in the Azure portal. The user has selected **Access Control (IAM)**](../Images/4-Storage-Account.png)
+
+1. On the **hbasestorage*9999* | Access Control (IAM)** page, select **Add**, and then select **Add role assignment**:
+
+
+    ![The **hbasestorage*9999* | Access Control (IAM)** page in the Azure portal. The user has selected **Add role assignment**](../Images/4-Add-Role-Assignment.png)
 
 1. In the **Add role assignment** pane, enter the following settings, and then select **Save**:
 
@@ -259,6 +266,8 @@ Only perform the task in this section if you haven't performed the Kakfa Migrati
     | Select | Specify the hbasemanagedid managed identity in the workshoprg*9999* resource group |
 
 1. Wait while the role is assigned, and then click **Role assignments** to verify that it has been assigned successfully.
+
+    ![The **Role assignments** page in the Azure portal. The **hbasemanagedid** identity has been assigned the **Storage BlobData Owner** role in the storage account](../Images/4-Verify-Role-Assignment.png)
 
 ### Create the HBase cluster
 
@@ -323,7 +332,9 @@ Only perform the task in this section if you haven't performed the Kakfa Migrati
 
 1. If you haven't completed any of the previous exercises, perform the steps in the document [Peer the virtual networks](../../CommonTasks/PeerVirtualNetworks.md)
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **hbasecluster*9999***.
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **hbasecluster*9999***.
 
 1. On the **Overview** page for the cluster, under **Dashboards**, select **Ambari home**.
 
@@ -495,7 +506,9 @@ In this task, you'll create a snapshot of the HBase database in the Cloudera clu
 
 1. Return to the Azure portal in the web browser.
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **hbasestorage*9999***.
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **hbasestorage*9999***.
 
 1. Under **Settings**, select **Access keys**. Select **Show keys**, and make a note of the value for the **key1** key:
 
@@ -523,6 +536,7 @@ In this task, you'll create a snapshot of the HBase database in the Cloudera clu
     ```bash
     hbase shell
     ```
+
 1. Verify that the snapshot has been transferred:
 
     ```hbase
@@ -604,7 +618,7 @@ The operations described in this task assume that the data in the HBase database
 
 1. Close the hbase shell.
 
-1. Upload the **batch2.csv** file to HDFS. This file contains the next batch of flight data.
+1. Copy the **batch2.csv** file to HDFS. This file contains the next batch of flight data.
 
     ```bash
     hdfs dfs -copyFromLocal batch2.csv

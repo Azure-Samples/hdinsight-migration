@@ -192,7 +192,9 @@ In this task, you'll create a new virtual network and subnet to host the cluster
 
 1. On the validation page, select **Create**, and wait while the user assigned managed identity is created.
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **clusterstorage*9999***.
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **clusterstorage*9999***.
 
 1. On the **clusterstorage*9999*** page, select **Access Control (IAM)**:
 
@@ -282,9 +284,9 @@ In this task, you'll configure peering between the virtual network containing th
 
 ### Peer the virtual networks
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **clustervnet*9999***:
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
 
-    ![The **Recent resource** list on the Home page in the Azure portal. The user has selected the **clustervnet** virtual network](../Images/1-Recent-Resources.png)
+1. On the **workshoprg*9999*** resource group page, select  **clustervnet*9999***:
 
 1. On the **clustervnet*9999*** page, under **Settings**, select **Peerings**:
 
@@ -315,7 +317,9 @@ In this task, you'll configure peering between the virtual network containing th
 
 ### Configure the cluster to support MirrorMaker
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **kafkacluster*9999***.
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **kafkacluster*9999***.
 
 1. On the **Overview** page for the cluster, under **Dashboards**, select **Ambari home**:
 

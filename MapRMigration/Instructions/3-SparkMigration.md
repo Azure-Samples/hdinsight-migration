@@ -21,7 +21,7 @@ Only perform the tasks in this Setup section if you haven't performed Hive Migra
 
 ---
 
-1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser***. Replace *\<ip_address\>* with the IP address of the virtual machine.
+1. If you haven't already done so, on your desktop, open a **Command Prompt** window and sign in to the MapR virtual machine. The username is **azureuser**. Replace *\<ip_address\>* with the IP address of the virtual machine.
 
     ```PowerShell
     ssh azureuser@<ip address>
@@ -260,7 +260,7 @@ In the live system, the HDInsight Spark cluster will retrieve the data from the 
 
 **NOTE:**
 
-Only perform the tasks in this section if you haven't performed the Kakfa Migration or Hive Migration exercises, otherwise skip to the task [Create the SQL database](#Create-the-SQL-database).
+Only perform the steps in this section if you haven't performed the Kakfa Migration or Hive Migration exercises, otherwise skip to the task [Create the SQL database](#Create-the-SQL-database).
 
 ---
 
@@ -276,7 +276,7 @@ Only perform the tasks in this section if you haven't performed the Kakfa Migrat
 
 **NOTE:**
 
-Only perform the task in this section if you haven't performed Hive Migration exercise, otherwise skip to the task [Create the Spark cluster](#Create-the-Spark-cluster).
+Only perform the steps in this section if you haven't performed Hive Migration exercise, otherwise skip to the task [Create the Spark cluster](#Create-the-Spark-cluster).
 
 ---
 
@@ -353,7 +353,9 @@ Only perform the task in this section if you haven't performed Hive Migration ex
 
 1. If you haven't performed the Kakfa or Hive Migration exercises, perform the steps in the document [Peer the virtual networks](../../CommonTasks/PeerVirtualNetworks.md)
 
-1. On the Home page in the Azure portal, under **Recent resources**, select **sparkcluster*9999***.
+1. On the Home page in the Azure portal, select **Resource Groups**, and then select the **workshoprg*9999*** resource group. 
+
+1. On the **workshoprg*9999*** resource group page, select  **sparkcluster*9999***.
 
 1. On the **Overview** page for the cluster, under **Dashboards**, select **Ambari home**.
 
