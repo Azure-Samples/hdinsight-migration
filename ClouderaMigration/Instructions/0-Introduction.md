@@ -65,7 +65,7 @@ Perform the following tasks:
 
     **NOTE: BEFORE PUBLISHING THIS WORKSHOP, REPLACE THE URL BELOW WITH THE ADDRESS OF THE GITHUB REPO HOLDING THE SCRIPT**
     ```PowerShell
-    wget https://raw.githubusercontent.com/JohnPWSharp/HDInsight-Migration-Workshops/master/Setup/clouderasetup.ps1?token=AAONHQTYV5K6LA33NJH4EMDABGGDY -O clouderasetup.ps1
+    wget https://raw.githubusercontent.com/arnabganguly/HDInsight-Migration-Workshop2/master/Setup/clouderasetup.ps1
     ```
 
 1. In the Cloud Shell toolbar, select **Open editor**.
