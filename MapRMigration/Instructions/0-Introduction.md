@@ -59,7 +59,7 @@ Perform the following tasks:
 
     **NOTE: BEFORE PUBLISHING THIS WORKSHOP, REPLACE THE URL BELOW WITH THE ADDRESS OF THE GITHUB REPO HOLDING THE SCRIPT**
     ```PowerShell
-    wget https://raw.githubusercontent.com/JohnPWSharp/HDInsight-Migration-Workshops/master/Setup/maprsetup.ps1?token=AAONHQW2C2K22YNHY3VO4XLAB2NQI -O maprsetup.ps1
+    wget https://raw.githubusercontent.com/arnabganguly/HDInsight-Migration-Workshop2/master/Setup/maprsetup.ps1
     ```
 
 1. In the Cloud Shell toolbar, select **Open editor**.
