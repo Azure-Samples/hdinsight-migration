@@ -19,4 +19,15 @@ Additionally, an HDInsight cluster comprises a number of virtual machines. You m
 
 ---
 
+---
 
+**PREREQUISITES:**
+
+
+
+Additionally, an HDInsight cluster comprises a number of virtual machines. You may need to request an increase in the quota for the number of CPU cores for your subscription before starting this lab. For more information, read [Requesting quota increases for Azure HDInsight](https://docs.microsoft.com/en-us/azure/hdinsight/quota-increase-request).
+
+---
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTg1MTUyODI0OF19
+-->
