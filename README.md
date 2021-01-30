@@ -11,7 +11,7 @@ Both labs are very similar; they only vary in the technology used as the startin
 
 ---
 
-**PREREQUISITES:**
+**PREREQUISITE:**
 
  - Azure Subscription with contributor access with balance of at least $200 or more
  - SSH client like [Putty](https://www.putty.org/)
@@ -30,5 +30,5 @@ Additionally, an HDInsight cluster comprises a number of virtual machines. You m
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNzYyNjY2MjRdfQ==
+eyJoaXN0b3J5IjpbLTEwNTIzMTY3OSwtMTI3NjI2NjYyNF19
 -->
