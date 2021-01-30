@@ -11,6 +11,14 @@ Both labs are very similar; they only vary in the technology used as the startin
 
 ---
 
+**PREREQUISITES:**
+
+ - Azure Subscription with contributor access with balance of at least $200 or more
+ - SSH client like [Putty](https://www.putty.org/)
+---
+
+---
+
 **IMPORTANT:**
 
 This lab creates several HDInsight clusters and a virtual machine for running Cloudera or MapR. Make sure that you delete these resources when you have finished, otherwise you will generate considerable charges.
@@ -19,14 +27,8 @@ Additionally, an HDInsight cluster comprises a number of virtual machines. You m
 
 ---
 
----
 
-**PREREQUISITES:**
 
- - Azure Subscription with contributor access and balance of at least $250 or more
- - Putty Client
-
----
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNjUzOTA5MjVdfQ==
+eyJoaXN0b3J5IjpbLTEyNzYyNjY2MjRdfQ==
 -->
