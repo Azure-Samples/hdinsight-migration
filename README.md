@@ -1,5 +1,7 @@
 # HDInsight Migration Workshop
 
+**The workshop/s here are intended to be run as classroom sessions under supervision of Microsoft Trainers**
+
 This workshop contains two sets of lab exercises:
 
 1. [Migrate a Cloudera cluster to HDInsight](ClouderaMigration/README.md)
@@ -15,6 +17,7 @@ Both labs are very similar; they only vary in the technology used as the startin
 
  - Azure Subscription with contributor access with balance of at least $200 or more
  - SSH client like [Putty](https://www.putty.org/)
+ - Disk images for simulated on-premise clusters - Contact HDInsight Engineering team for image files
 ---
 
 ---
