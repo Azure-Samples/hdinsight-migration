@@ -21,7 +21,7 @@ Both labs are very similar; they only vary in the technology used as the startin
 
 **IMPORTANT:**
 
-**The workshop/s here are intended to be run as classroom sessions under supervision of Microsoft Trainers**
+**The workshops here are intended to be run as classroom sessions under supervision of Microsoft Trainers**
 
 This lab creates several HDInsight clusters and a virtual machine for running Cloudera or MapR. Make sure that you delete these resources when you have finished, otherwise you will generate considerable charges.
 
